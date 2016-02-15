@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\controllers\associateController.js" />
+    <Content Include="app\controllers\contactsController.js" />
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\loginController.js" />
@@ -67,9 +68,11 @@
     <Content Include="app\controllers\tokensManagerController.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
+    <Content Include="app\services\contactsService.js" />
     <Content Include="app\services\ordersService.js" />
     <Content Include="app\services\tokensManagerService.js" />
     <Content Include="app\views\associate.html" />
+    <Content Include="app\views\contacts.html" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\orders.html" />
@@ -102,10 +105,12 @@
     <Content Include="app\app.js" />
     <Content Include="content\css\bootstrap.min.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="content\img\noavatar.jpg" />
     <Content Include="index.html" />
     <Content Include="scripts\angular-local-storage.min.js" />
     <Content Include="scripts\authComplete.js" />
     <Content Include="scripts\loading-bar.min.js" />
+    <Content Include="TestContacts.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

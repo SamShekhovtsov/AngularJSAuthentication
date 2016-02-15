@@ -56,20 +56,21 @@ namespace AngularJSAuthentication.API
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "xxxxxx",
-                ClientSecret = "xxxxxx",
-                Provider = new GoogleAuthProvider()
+                ClientId = "390651831318-bpha5a7j6tve7b9v4ohsb6ecd17i4itq.apps.googleusercontent.com",
+                ClientSecret = "Hl9r4KY9iBGnSoTGavHghn5Y",
+                Provider = new GoogleAuthProvider(),
+                Scope = { "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile", "https://www.google.com/m8/feeds/", "https://www.googleapis.com/auth/contacts" }
             };
             app.UseGoogleAuthentication(googleAuthOptions);
 
-            //Configure Facebook External Login
-            facebookAuthOptions = new FacebookAuthenticationOptions()
-            {
-                AppId = "xxxxxx",
-                AppSecret = "xxxxxx",
-                Provider = new FacebookAuthProvider()
-            };
-            app.UseFacebookAuthentication(facebookAuthOptions);
+//            //Configure Facebook External Login
+//            facebookAuthOptions = new FacebookAuthenticationOptions()
+//            {
+//                AppId = "xxxxxx",
+//                AppSecret = "xxxxxx",
+//                Provider = new FacebookAuthProvider()
+//            };
+//            app.UseFacebookAuthentication(facebookAuthOptions);
 
         }
     }

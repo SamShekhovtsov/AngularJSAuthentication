@@ -1,0 +1,42 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contacts sample</title>
+    <script type="text/javascript" language="javascript" src="https://apis.google.com/js/client.js"></script>
+    <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript">
+    function auth() {
+        var config = {
+            'client_id': '390651831318-nlt6flqud7dqdnk0se3r8mo9mf3mft84.apps.googleusercontent.com',
+            'scope': 'https://www.google.com/m8/feeds'
+        };
+        gapi.auth.authorize(config, function () {
+            fetch(gapi.auth.getToken());
+        });
+    }
+    function fetch(token) {
+
+        var url_xxx = "https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + token.access_token + "&max-results=500&v=3.0";
+        //$.get("https://www.google.com/m8/feeds/contacts/default/full?alt=json&access_token=" + token.access_token + "&max-results=500&v=3.0",
+//        $.get(url_xxx,
+//                function (response) {
+//                    //process the response here
+//                    console.log(JSON.stringify(response));
+//                    return response;
+//                }, function (error) { console.log(error); });
+//        
+        $.ajax({
+            url: url_xxx,
+            dataType: 'jsonp',
+            data: token
+        }).done(function (data) {
+            alert(JSON.stringify(data));
+            console.log(JSON.stringify(data));
+        });
+    }
+    </script>
+
+</head>
+<body>
+    <button onclick="auth();">GET CONTACTS FEED</button>
+</body>
+</html>

@@ -156,7 +156,7 @@ namespace AngularJSAuthentication.API.Controllers
             }
 
             //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName);
+            var accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName, model.ExternalAccessToken);
 
             return Ok(accessTokenResponse);
         }
@@ -188,7 +188,7 @@ namespace AngularJSAuthentication.API.Controllers
             }
 
             //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName);
+            var accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName, externalAccessToken);
 
             return Ok(accessTokenResponse);
 
@@ -268,10 +268,10 @@ namespace AngularJSAuthentication.API.Controllers
                 return string.Format("Client_id '{0}' is not registered in the system.", clientId);
             }
 
-            if (!string.Equals(client.AllowedOrigin, redirectUri.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase))
-            {
-                return string.Format("The given URL is not allowed by Client_id '{0}' configuration.", clientId);
-            }
+//            if (!string.Equals(client.AllowedOrigin, redirectUri.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase))
+//            {
+//                return string.Format("The given URL is not allowed by Client_id '{0}' configuration.", clientId);
+//            }
 
             redirectUriOutput = redirectUri.AbsoluteUri;
 
@@ -353,7 +353,7 @@ namespace AngularJSAuthentication.API.Controllers
             return parsedToken;
         }
 
-        private JObject GenerateLocalAccessTokenResponse(string userName)
+        private JObject GenerateLocalAccessTokenResponse(string userName, string originalToken)
         {
 
             var tokenExpiration = TimeSpan.FromDays(1);
@@ -375,6 +375,7 @@ namespace AngularJSAuthentication.API.Controllers
 
             JObject tokenResponse = new JObject(
                                         new JProperty("userName", userName),
+                                        new JProperty("original_access_token", originalToken),
                                         new JProperty("access_token", accessToken),
                                         new JProperty("token_type", "bearer"),
                                         new JProperty("expires_in", tokenExpiration.TotalSeconds.ToString()),

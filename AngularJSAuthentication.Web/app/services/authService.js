@@ -115,7 +115,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         $http.get(serviceBase + 'api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: "", useRefreshTokens: false });
+            localStorageService.set('authorizationData', { google_access_token: response.original_access_token, token: response.access_token, userName: response.userName, refreshToken: "", useRefreshTokens: false });
 
             _authentication.isAuth = true;
             _authentication.userName = response.userName;
@@ -138,7 +138,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         $http.post(serviceBase + 'api/account/registerexternal', registerExternalData).success(function (response) {
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: "", useRefreshTokens: false });
+            localStorageService.set('authorizationData', { google_access_token: response.original_access_token, token: response.access_token, userName: response.userName, refreshToken: "", useRefreshTokens: false });
 
             _authentication.isAuth = true;
             _authentication.userName = response.userName;
