@@ -53,7 +53,7 @@ namespace AngularJSAuthentication.API.Controllers
                    .ContinueWith((taskwithmsg) =>
                     {
                         var response = taskwithmsg.Result;
-
+ 
                         if (response.Content.Headers.ContentEncoding.ToString().ToLower().Contains("gzip"))
                         {
                             var responseStream = new GZipStream(response.Content.ReadAsStreamAsync().Result, CompressionMode.Decompress);
@@ -74,6 +74,11 @@ namespace AngularJSAuthentication.API.Controllers
                 foreach (var entry in entries)
                 {
                     Debug.WriteLine(" next entry processing " + entries.IndexOf(entry));
+
+                    if (entry["gd$email"] == null)
+                    {
+                        continue;
+                    }
 
                     var emailNode = entry["gd$email"].FirstOrDefault(ml => ml["primary"] != null && ml["primary"].Value<string>() == "true");
                     if (emailNode == null && entry["gd$email"].Any())
